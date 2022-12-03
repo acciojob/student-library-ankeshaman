@@ -2,6 +2,7 @@ package com.example.library.studentlibrary.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
 public class Book {
 
     @Id
@@ -17,7 +19,7 @@ public class Book {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
     @ManyToOne

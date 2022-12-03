@@ -18,20 +18,26 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository4;
 
+//    @Autowired
+//    Card card;
+
     public Student getDetailsByEmail(String email){
         Student student = null;
-
+        student = studentRepository4.findByEmailId(email);
         return student;
     }
 
     public Student getDetailsById(int id){
         Student student = null;
-
+        studentRepository4.findById(id);
         return student;
     }
 
     public void createStudent(Student student){
 
+        Card card = cardService4.createAndReturn(student);
+        //student.setCard(card);
+        studentRepository4.save(student);
     }
 
     public void updateStudent(Student student){
@@ -40,5 +46,7 @@ public class StudentService {
 
     public void deleteStudent(int id){
         //Delete student and deactivate corresponding card
+        cardService4.deactivateCard(id);
+        studentRepository4.deleteCustom(id);
     }
 }
